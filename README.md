@@ -5,9 +5,9 @@
 
 # Navigate to each microservice directory (e.g., sample-mern-client, sample-mern-server, sample-mern-mongo)
 
-docker build -t sample-mern-client .
-docker build -t sample-mern-server .
-docker build -t sample-mern-mongo .
+# docker build -t sample-mern-client .
+# docker build -t sample-mern-server .
+# docker build -t sample-mern-mongo .
 
 # Login to your Azure Container Registry (ACR) using Azure CLI:
 
@@ -15,41 +15,43 @@ az acr login --name sample-mern-acr
 
 # Tag Docker images for ACR:
 
-docker tag sample-mern-client sample-mern-acr.azurecr.io/sample-mern-client:deployment
-docker tag sample-mern-server sample-mern-acr.azurecr.io/sample-mern-server:deployment
-docker tag sample-mern-mongo sample-mern-acr.azurecr.io/sample-mern-mongo:deployment
+# docker tag sample-mern-client sample-mern-acr.azurecr.io/sample-mern-client:deployment
+# docker tag sample-mern-server sample-mern-acr.azurecr.io/sample-mern-server:deployment
+# docker tag sample-mern-mongo sample-mern-acr.azurecr.io/sample-mern-mongo:deployment
 
 # Push Docker images to ACR:
 
-docker push sample-mern-acr.azurecr.io/sample-mern-client:deployment
-docker push sample-mern-acr.azurecr.io/sample-mern-server:deployment
-docker push sample-mern-acr.azurecr.io/sample-mern-mong:deployment
+# docker push sample-mern-acr.azurecr.io/sample-mern-client:deployment
+# docker push sample-mern-acr.azurecr.io/sample-mern-server:deployment
+# docker push sample-mern-acr.azurecr.io/sample-mern-mong:deployment
 
 # Create an AKS cluster:
 
 ## Create a resource group:
 
-az group create --name mern_deployment --location centralindia
+# az group create --name mern_deployment --location centralindia
 
 ## Create AKS cluster:
 
-az aks create --resource-group mern_deployment --name deployment_cluster --node-count 2 --enable-addons monitoring --generate-ssh-keys
+# az aks create --resource-group mern_deployment --name deployment_cluster --node-count 2 --enable-addons monitoring --generate-ssh-keys
 
 # Configure kubectl to connect to the AKS cluster:
 
-az aks get-credentials --resource-group mern_deployment --name deployment_cluster
+# az aks get-credentials --resource-group mern_deployment --name deployment_cluster
 
 # Deploy microservices to AKS:
 ## Create Kubernetes deployments and services for each microservice by applying the YAML files:
 
-kubectl apply -f <path-to-kubernetes-yaml>
+# kubectl apply -f <path-to-kubernetes-yaml>
 
 # Expose microservices using Ingress controller:
 ## Install Nginx Ingress Controller:
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
 
 # Create an Ingress resource to route traffic to microservices:
+
+###
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -83,6 +85,7 @@ spec:
             name: sample-mern-mongo-service
             port:
               number: 27017
+        ###
 
     Add an entry to the /etc/hosts file with the external IP and hostname configured in the Ingress resource.
     Access the MERN application using the configured hostname.
