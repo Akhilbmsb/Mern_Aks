@@ -98,11 +98,11 @@ spec:
             port:
               number: 27017
         ```
-        
-     ```
+    #
     Add an entry to the /etc/hosts file with the external IP and hostname configured in the Ingress resource.
     Access the MERN application using the configured hostname.
-    ``` 
+    #
+    
 
 
 ![Screenshot (3091)](https://github.com/Akhilbmsb/Mern_Aks/assets/54345937/3a9094ee-a185-435c-ae97-7566a4ecd93f)
