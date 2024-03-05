@@ -63,7 +63,7 @@ kubectl apply -f <path-to-kubernetes-yaml>
 
 # Create an Ingress resource to route traffic to microservices:
 
-```
+#
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -97,7 +97,7 @@ spec:
             name: sample-mern-mongo-service
             port:
               number: 27017
-        ```
+        #
     #
     Add an entry to the /etc/hosts file with the external IP and hostname configured in the Ingress resource.
     Access the MERN application using the configured hostname.
